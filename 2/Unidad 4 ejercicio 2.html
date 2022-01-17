@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<head>
+<script>
+    var intervalo = 0;
+    var tiempoRestante = 0;
+
+    function iniciar(){
+        var tiempoRestante = document.getElementById('texto').value;
+        var contador = document.getElementById('contador');
+
+        if(tiempoRestante > 0){
+            intervalo = setInterval(actualizar, 1000);
+
+            function actualizar(){
+                contador.style.color = "black";
+                contador.innerHTML = tiempoRestante;
+                tiempoRestante = tiempoRestante - 1;
+
+                if(tiempoRestante < 0){
+                    clearInterval(intervalo);
+                    contador.style.color = "red";
+                }
+            }
+        }
+    }
+
+    function parar(){
+        if(intervalo) clearInterval(intervalo);
+    }
+    
+</script>
+</head>
+<body>
+<p>Número de segundos:<input type="text" id="texto"></p>
+<div id="contador">(Contador)</div></br>
+<button id="start" onclick="iniciar()">Iniciar</button><button id="stop" onclick="parar()">Parar</button>
+</body>
+</html>
